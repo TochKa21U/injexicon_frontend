@@ -15,7 +15,9 @@ const GEThandle = async (req: NextApiRequest, res: NextApiResponse) => {
 // SUBMIT ANSWER TO LEVEL
 const POSThandle = async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query;
-    const { secretphrase } = req.body;
+    const { secretphrase, prompt } = req.body;
+    // If Prompt exists then send message to LLM
+    // If secretphrase exists send the secret code
     try {
         const payload : SubmitAnswer = {
             levelcode: "id",
