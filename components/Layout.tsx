@@ -1,32 +1,47 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import React from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import HeaderContent from './HeaderContent';
+import FooterContent from './FooterContent';
+import BannerGithub from './BannerGithub';
+import { Flowbite } from 'flowbite-react';
 
-type Props = {
-  children?: ReactNode
-  title?: string
+interface LayoutProps {
+    title?: string;
+    children: React.ReactNode;
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <header>
-      <nav>
-        <Link href="/">Home</Link> | <Link href="/about">About</Link> |{' '}
-        <Link href="/users">Users List</Link> |{' '}
-        <a href="/api/users">Users API</a>
-      </nav>
-    </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
-  </div>
-)
+const Layout: React.FC<LayoutProps> = ({ title = 'Default Title', children }) => {
+    return (
+        <div className="flex flex-col h-screen justify-between">
+          <Flowbite>
+            <Head>
+                <title>{title}</title>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
 
-export default Layout
+            {/* Header */}
+            <header className="p-4 shadow-md w-full">
+                <div className="m-4">
+                    <HeaderContent />
+                </div>
+            </header>
+
+            {/* Main Content */}
+            <main className="mb-auto container mx-auto p-4">
+                {children}
+            </main>
+
+            {/* Footer */}
+            <footer className="p-4">
+                <div className="m-4 text-center w-full">
+                    <FooterContent />
+                </div>
+            </footer>
+          </Flowbite>
+        </div>
+    );
+};
+
+export default Layout;

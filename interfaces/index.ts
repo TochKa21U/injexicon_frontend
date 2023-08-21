@@ -8,3 +8,24 @@ export type User = {
   id: number
   name: string
 }
+
+export type UserSignIn = {
+  username: string,
+  hashed_password: string
+  email: string
+};
+  
+export type SubmitNewLevel = {
+  secretphrase: string
+  submission_input: string
+};
+export type RevealAllGuards = {
+  InputGuard : string
+  SystemContext ?: string 
+  SanitizerGuard ?: string
+};
+
+export type SubmitAnswer = {
+  secretphrase: string | string[]
+  levelcode: string
+}
